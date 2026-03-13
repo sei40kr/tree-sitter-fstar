@@ -1,0 +1,217 @@
+================================================================================
+Module declaration
+================================================================================
+
+module MyModule
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid))))
+
+================================================================================
+Open declaration
+================================================================================
+
+module Test
+
+open FStar.List
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (open_declaration
+    (uid_path (uid) (uid))))
+
+================================================================================
+Val declaration
+================================================================================
+
+module Test
+
+val add : int -> int -> int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (val_declaration
+    (lid)
+    (binary_expression
+      (lid)
+      (binary_expression
+        (lid)
+        (lid)))))
+
+================================================================================
+Let declaration
+================================================================================
+
+module Test
+
+let x = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (integer))))
+
+================================================================================
+Let rec declaration
+================================================================================
+
+module Test
+
+let rec factorial n =
+  if n = 0 then 1
+  else n * factorial (n - 1)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (if_expression
+        (binary_expression (lid) (integer))
+        (integer)
+        (binary_expression
+          (lid)
+          (application
+            (lid)
+            (paren_expression
+              (binary_expression (lid) (integer)))))))))
+
+================================================================================
+Type declaration (inductive)
+================================================================================
+
+module Test
+
+type mylist (a:Type) =
+  | Nil : mylist a
+  | Cons : a -> mylist a -> mylist a
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (type_declaration
+    (lid)
+    (binder (lid) (uid))
+    (inductive_body
+      (constructor (uid) (application (lid) (lid)))
+      (constructor (uid)
+        (binary_expression
+          (lid)
+          (binary_expression
+            (application (lid) (lid))
+            (application (lid) (lid))))))))
+
+================================================================================
+Type declaration (record)
+================================================================================
+
+module Test
+
+type point = {
+  x : int;
+  y : int
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (type_declaration
+    (lid)
+    (record_type
+      (field_declaration (lid) (lid))
+      (field_declaration (lid) (lid)))))
+
+================================================================================
+Exception declaration
+================================================================================
+
+module Test
+
+exception MyError of string
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (exception_declaration
+    (uid)
+    (lid)))
+
+================================================================================
+Module abbreviation
+================================================================================
+
+module Test
+
+module L = FStar.List
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (module_abbreviation
+    (uid)
+    (uid_path (uid) (uid))))
+
+================================================================================
+Let with type annotation
+================================================================================
+
+module Test
+
+let x : int = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (integer))))
+
+================================================================================
+Private val declaration
+================================================================================
+
+module Test
+
+private val helper : int -> int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (val_declaration
+    (qualifier)
+    (lid)
+    (binary_expression
+      (lid)
+      (lid))))

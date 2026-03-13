@@ -1,0 +1,291 @@
+================================================================================
+Integer literals
+================================================================================
+
+module Test
+
+let a = 42
+let b = 0xFF
+let c = 0o77
+let d = 0b1010
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration (let_binding (lid) (integer)))
+  (let_declaration (let_binding (lid) (integer)))
+  (let_declaration (let_binding (lid) (integer)))
+  (let_declaration (let_binding (lid) (integer))))
+
+================================================================================
+String and char literals
+================================================================================
+
+module Test
+
+let s = "hello world"
+let c = 'a'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration (let_binding (lid) (string)))
+  (let_declaration (let_binding (lid) (char))))
+
+================================================================================
+Boolean and unit literals
+================================================================================
+
+module Test
+
+let t = true
+let f = false
+let u = ()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration (let_binding (lid) (boolean)))
+  (let_declaration (let_binding (lid) (boolean)))
+  (let_declaration (let_binding (lid) (unit))))
+
+================================================================================
+If expression
+================================================================================
+
+module Test
+
+let x = if true then 1 else 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (if_expression
+        (boolean)
+        (integer)
+        (integer)))))
+
+================================================================================
+Match expression
+================================================================================
+
+module Test
+
+let f x =
+  match x with
+  | 0 -> true
+  | _ -> false
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (match_expression
+        (lid)
+        (match_branch (integer) (boolean))
+        (match_branch (wildcard) (boolean))))))
+
+================================================================================
+Fun expression
+================================================================================
+
+module Test
+
+let f = fun x -> x + 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (fun_expression
+        (lid)
+        (binary_expression (lid) (integer))))))
+
+================================================================================
+Let-in expression
+================================================================================
+
+module Test
+
+let f x =
+  let y = x + 1 in
+  y * 2
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (let_expression
+        (let_binding (lid) (binary_expression (lid) (integer)))
+        (binary_expression (lid) (integer))))))
+
+================================================================================
+List expression
+================================================================================
+
+module Test
+
+let xs = [1; 2; 3]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (list_expression (integer) (integer) (integer)))))
+
+================================================================================
+Tuple expression
+================================================================================
+
+module Test
+
+let p = (1, 2)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (tuple_expression (integer) (integer)))))
+
+================================================================================
+Record expression
+================================================================================
+
+module Test
+
+let p = { x = 1; y = 2 }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (record_expression
+        (field_assignment (lid) (integer))
+        (field_assignment (lid) (integer))))))
+
+================================================================================
+Binary operators
+================================================================================
+
+module Test
+
+let a = 1 + 2
+let b = x && y
+let c = x || y
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration (let_binding (lid) (binary_expression (integer) (integer))))
+  (let_declaration (let_binding (lid) (binary_expression (lid) (lid))))
+  (let_declaration (let_binding (lid) (binary_expression (lid) (lid)))))
+
+================================================================================
+Function application
+================================================================================
+
+module Test
+
+let x = f a b c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (application
+        (application
+          (application (lid) (lid))
+          (lid))
+        (lid)))))
+
+================================================================================
+Sequencing
+================================================================================
+
+module Test
+
+let f x =
+  g x;
+  h x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (seq_expression
+        (application (lid) (lid))
+        (application (lid) (lid))))))
+
+================================================================================
+Begin-end expression
+================================================================================
+
+module Test
+
+let f x =
+  begin
+    g x;
+    h x
+  end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (begin_end_expression
+        (seq_expression
+          (application (lid) (lid))
+          (application (lid) (lid)))))))

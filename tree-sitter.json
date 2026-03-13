@@ -1,0 +1,23 @@
+{
+  "grammars": [
+    {
+      "name": "fstar",
+      "camelCase": false,
+      "scope": "source.fstar",
+      "path": ".",
+      "file-types": ["fst", "fsti"],
+      "highlights": "queries/highlights.scm",
+      "external-scanner": {
+        "path": "src/scanner.c"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for F*",
+    "links": {
+      "repository": "https://github.com/sei40kr/tree-sitter-fstar"
+    }
+  }
+}

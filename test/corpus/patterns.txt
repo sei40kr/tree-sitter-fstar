@@ -1,0 +1,108 @@
+================================================================================
+Wildcard pattern
+================================================================================
+
+module Test
+
+let _ = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (wildcard)
+      (integer))))
+
+================================================================================
+Constructor pattern in match
+================================================================================
+
+module Test
+
+let f x =
+  match x with
+  | Some y -> y
+  | None -> 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (match_expression
+        (lid)
+        (match_branch
+          (constructor_pattern (uid) (lid))
+          (lid))
+        (match_branch
+          (uid)
+          (integer))))))
+
+================================================================================
+List pattern
+================================================================================
+
+module Test
+
+let f xs =
+  match xs with
+  | [] -> 0
+  | [x] -> x
+  | _ -> 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (match_expression
+        (lid)
+        (match_branch
+          (list_pattern)
+          (integer))
+        (match_branch
+          (list_pattern (lid))
+          (lid))
+        (match_branch
+          (wildcard)
+          (integer))))))
+
+================================================================================
+Cons pattern
+================================================================================
+
+module Test
+
+let f xs =
+  match xs with
+  | x :: rest -> x
+  | [] -> 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (let_declaration
+    (let_binding
+      (lid)
+      (lid)
+      (match_expression
+        (lid)
+        (match_branch
+          (cons_pattern (lid) (lid))
+          (lid))
+        (match_branch
+          (list_pattern)
+          (integer))))))

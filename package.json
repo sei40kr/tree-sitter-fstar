@@ -1,0 +1,34 @@
+{
+  "name": "tree-sitter-fstar",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for F*",
+  "main": "bindings/node",
+  "keywords": [
+    "parser",
+    "tree-sitter",
+    "fstar"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.24.0"
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.fstar",
+      "file-types": [
+        "fst",
+        "fsti"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ]
+}

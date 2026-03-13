@@ -1,0 +1,53 @@
+================================================================================
+Line comment
+================================================================================
+
+module Test
+
+// This is a comment
+let x = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (line_comment)
+  (let_declaration
+    (let_binding (lid) (integer))))
+
+================================================================================
+Block comment
+================================================================================
+
+module Test
+
+(* This is a block comment *)
+let x = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (block_comment)
+  (let_declaration
+    (let_binding (lid) (integer))))
+
+================================================================================
+Nested block comment
+================================================================================
+
+module Test
+
+(* outer (* inner *) still outer *)
+let x = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    (uid_path (uid)))
+  (block_comment)
+  (let_declaration
+    (let_binding (lid) (integer))))
