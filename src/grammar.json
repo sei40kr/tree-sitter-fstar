@@ -3478,15 +3478,44 @@
     }
   ],
   "conflicts": [
-    ["_atomic_pattern", "_identifier"],
-    ["_atomic_term", "_identifier"],
-    ["_atomic_term", "uid_path"],
-    ["_atomic_term", "uid_path", "uid_path_dot_lid"],
-    ["_atomic_term", "field_assignment"],
-    ["_atomic_term", "_identifier", "field_declaration"],
-    ["constructor", "_atomic_term", "uid_path"],
-    ["implicit_binder"],
-    ["_term", "_non_seq_term"]
+    [
+      "_atomic_pattern",
+      "_identifier"
+    ],
+    [
+      "_atomic_term",
+      "_identifier"
+    ],
+    [
+      "_atomic_term",
+      "uid_path"
+    ],
+    [
+      "_atomic_term",
+      "uid_path",
+      "uid_path_dot_lid"
+    ],
+    [
+      "_atomic_term",
+      "field_assignment"
+    ],
+    [
+      "_atomic_term",
+      "_identifier",
+      "field_declaration"
+    ],
+    [
+      "constructor",
+      "_atomic_term",
+      "uid_path"
+    ],
+    [
+      "implicit_binder"
+    ],
+    [
+      "_term",
+      "_non_seq_term"
+    ]
   ],
   "precedences": [],
   "externals": [
@@ -3496,5 +3525,6 @@
     }
   ],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
