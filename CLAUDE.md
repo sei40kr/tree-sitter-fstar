@@ -41,6 +41,13 @@ The grammar has 9 declared conflicts for ambiguous parses between patterns/terms
 
 After editing `grammar.js` or `src/scanner.c`, always run `tree-sitter generate` then `tree-sitter test` to verify changes. Add test cases in `test/corpus/` for any new or modified grammar rules.
 
+## Version Management
+
+The version is defined in two places and must be kept in sync:
+
+- `package.json` — `"version"` field
+- `nix/packages/tree-sitter-fstar.nix` — `version` attribute
+
 ## Commit Convention
 
 Follow [Angular Conventional Commits](https://www.conventionalcommits.org/). Example types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`.
